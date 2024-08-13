@@ -11,12 +11,11 @@ class Character {
     }
 }
 
-
 class Adventurer extends Character {
     static roles = ["fighter", "bard", "healer"];
     constructor(name, role) {
-        if (!Adventurer.roles.includes(role)) {
-          throw new Error(`Invalid role: ${role}. Must be one of: ${Adventurer.roles.join(", ")}`);
+        if (!Adventurer.roles.includes(role)) {   // if the assigned role isn't in the roles, then... 
+          throw new Error(`${role} must be one of the established options: ${Adventurer.roles.join(", ")}`);   // throw an error that the role has to be one of the predetermined options
         }
         super(name);
       this.role = role;
@@ -43,6 +42,8 @@ class Adventurer extends Character {
     }
 }
 
+
+// I think this is right now. I had been getting an error with the role check, but I think it's because I didn't have the role set for the companions.
 const robin = new Adventurer("Robin", "fighter");
 robin.inventory.push("sword", "potion", "artifact");
 
@@ -53,6 +54,8 @@ leo.inventory.push("kibble");
 const frank = new Companion("Frank", "healer");
 frank.type = "Flea";
 frank.inventory.push("small hat", "sunglasses");
+
+// then I had an error becuase these were up above the constants, which obviously can't happen.
 
 leo.companion = frank;
 robin.companion = leo;
