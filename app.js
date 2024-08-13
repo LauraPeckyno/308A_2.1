@@ -1,33 +1,33 @@
 class Character {
-    static maxHealth = 100;
+    static maxHealth = 100;  // from the assignment
     constructor(name) {
         this.name = name;
         this.health = 100;
         this.inventory = [];
     }
     roll(mod = 0) {
-        const result = Math.floor(Math.random() * 20) + 1 + mod;
+        const result = Math.floor(Math.random() * 20) + 1 + mod;  // also from the assignment
         console.log(`${this.name} rolled a ${result}.`)
     }
 }
 
-class Adventurer extends Character {
+class Adventurer extends Character {  /// from the assignment
     static roles = ["fighter", "bard", "healer"];
     constructor(name, role) {
         if (!Adventurer.roles.includes(role)) {   // if the assigned role isn't in the roles, then... 
-          throw new Error(`${role} must be one of the established options: ${Adventurer.roles.join(", ")}`);   // throw an error that the role has to be one of the predetermined options
+          throw new Error(`${role} must be one of the established options: ${Adventurer.roles.join(", ")}`);   // throw an error that the role has to be one of the predetermined options   (this seems to be working )
         }
         super(name);
       this.role = role;
       this.inventory.push("bedroll", "50 gold coins");
     }
     scout () {
-      console.log(`${this.name} is scouting ahead...`);
+      console.log(`${this.name} is scouting ahead...`);  // 
       super.roll();
     }
   }
 
-  class Companion extends Adventurer {
+  class Companion extends Adventurer {  // my take on repeating the Adventurer pattern for a companion
     constructor(name, role) {
         super(name, role); 
         // Companions have specialized roles.
@@ -60,3 +60,4 @@ frank.inventory.push("small hat", "sunglasses");
 leo.companion = frank;
 robin.companion = leo;
 
+// testing with leo.soothe() and frank.soothe() seems to work. However, leo is also able to scout. I'm sure that's right. How does one restrict scounting to the adventurer only?
